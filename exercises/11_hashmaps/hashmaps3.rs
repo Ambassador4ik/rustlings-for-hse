@@ -27,11 +27,11 @@ fn build_scores_table(results: &str) -> HashMap<&str, TeamScores> {
         let team_1_score: u8 = split_iterator.next().unwrap().parse().unwrap();
         let team_2_score: u8 = split_iterator.next().unwrap().parse().unwrap();
 
-        let team1 = scores.entry(team_1_name).or_insert_with(TeamScores::default);
+        let team1 = scores.entry(team_1_name).or_default();
         team1.goals_scored += team_1_score;
         team1.goals_conceded += team_2_score;
 
-        let team2 = scores.entry(team_2_name).or_insert_with(TeamScores::default);
+        let team2 = scores.entry(team_2_name).or_default();
         team2.goals_scored += team_2_score;
         team2.goals_conceded += team_1_score;
     }
